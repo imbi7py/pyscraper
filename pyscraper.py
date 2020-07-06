@@ -1,16 +1,41 @@
 import requests
 from bs4 import BeautifulSoup
 import sys
+import os
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-
+import pdfkit
 from PyQt5 import QtCore,QtGui
+path = r'wkhtmltopdf.exe'
+config = pdfkit.configuration(wkhtmltopdf=path)
 
+
+pdfkit.from_url("https://www.google.co.in/","demo.pdf",configuration=config)
+#call venv/scripts/activate.bat
 #backend
+class pyscraper(object):
+    def __init__(self):
+        #initialization
+        self.url = None
+        self.search = None
+        self.btn = None
+        self.file_loc = "./saved/"
+        self.file_name = "def"
+
+    def print_it(self):
+        print(self.url)
+        print(self.search)
 
 
 
+if __name__ == "__main__":
+    obj = pyscraper()
 
+    def data_transfer():
+        obj.url = url.text()
+        obj.search = search.text()
+        obj.btn = btn.text()
+        obj.print_it()
 
 #frontend
 app = QApplication(sys.argv)
@@ -50,13 +75,16 @@ layout = QVBoxLayout()
 url_label = QLabel("Base URL")
 search_label = QLabel("Search by")
 btn_label = QLabel("Next Button Text")
-save_label = QLabel("Save Loc")
+file_loc_label = QLabel("File Loc")
+file_name_label = QLabel("File Name")
 
 url = QLineEdit()
 search = QLineEdit()
 btn = QLineEdit()
-save = QLineEdit()
+file_loc = QLineEdit() #file location
+file_name = QLineEdit()
 submit = QPushButton("Submit")
+submit.clicked.connect(data_transfer)
 
 
 layout.addWidget(url_label)
@@ -65,8 +93,10 @@ layout.addWidget(search_label)
 layout.addWidget(search)
 layout.addWidget(btn_label)
 layout.addWidget(btn)
-layout.addWidget(save_label)
-layout.addWidget(save)
+layout.addWidget(file_loc_label)
+layout.addWidget(file_loc)
+layout.addWidget(file_name_label)
+layout.addWidget(file_name)
 layout.addWidget(submit)
 
 
