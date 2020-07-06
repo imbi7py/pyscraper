@@ -6,12 +6,11 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 import pdfkit
 from PyQt5 import QtCore,QtGui
-path = r'wkhtmltopdf.exe'
-config = pdfkit.configuration(wkhtmltopdf=path)
 
-
+config = pdfkit.configuration(wkhtmltopdf='wkhtmltopdf.exe')
+#trial
 pdfkit.from_url("https://www.google.co.in/","demo.pdf",configuration=config)
-#call venv/scripts/activate.bat
+#call venv/scripts/activate.bat  #call this before running the file
 #backend
 class pyscraper(object):
     def __init__(self):
